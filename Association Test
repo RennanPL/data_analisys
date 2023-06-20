@@ -1,0 +1,25 @@
+# CRIAR FUNÇÃO PARA RODAR VÁRIAS ASSOCIAÇÕES
+multi.cor <- function(x, y) {
+  c(
+    cor = cor(x, y), # Correlação
+    dcor = dcor(x, y), # Distance correlation
+    cosine = cosine(x, y), # Distância do Cosseno 
+    maxCor = maxCorProj(x, y), # Maximal correlation
+    MIC = mine (x, y) #  Maximal Information Coefficient
+  )
+}
+
+# Criando o dataframe
+Populist <- data.frame( 
+  País = c('Portugal', 'França', 'Hungria', 'Alemanha', 'Italia'),
+  Nível_Populismo = c(0.3, 0.5, 0.9, 0.4, 0.7),
+  Desigualdade = c(0.4, 0.7, 0.7, 0.1, 0.6))
+ 
+
+# Plotando o gráfico
+plot(Populist)
+
+corr <- multi.cor(Populist$Nível_Populismo, Populist$Desigualdade)
+
+print(corr)
+names(corr)
