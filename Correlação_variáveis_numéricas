@@ -1,0 +1,10 @@
+Populist <- data.frame( 
+  País = c('Portugal', 'França', 'Hungria', 'Alemanha', 'Italia'),
+  Nível_Populismo = c(0.3, 0.5, 0.9, 0.4, 0.7),
+  Desigualdade = c(0.4, 0.7, 0.7, 0.1, 0.6))
+
+Populist <- Populist %>% select(-País)
+cor(Populist)
+pairs(Populist)
+PopCor <- cor(Populist)
+corrplot(PopCor, method = "number", order = 'alphabet')
