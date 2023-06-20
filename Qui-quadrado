@@ -1,0 +1,16 @@
+Populist <- data.frame(
+  País = c('Portugal', 'França', 'Hungria', 'Alemanha', 'Italia'),
+  Nível_Populismo = c('baixo', 'médio', 'alto', 'médio', 'alto'),
+  Desigualdade = c('baixa', 'média', 'alta', 'baixa', 'alta')
+)
+
+Populist <- Populist %>% select(-País)
+
+# Criar a tabela de contingência
+Populist_table <- table(Populist$Nível_Populismo, Populist$Desigualdade)
+
+# Executar o teste qui-quadrado
+Populist_test <- chisq.test(Populist_table)
+Populist_test
+Populist_test$observed
+Populist_test$expected
