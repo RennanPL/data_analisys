@@ -1,0 +1,26 @@
+data.frame(USArrests)
+
+regarrests <- lm(Assault ~ ., data = USArrests) # ESTIMANDO A REGRESSÃO
+summary(regarrests) # SUMÁRIO
+lm.beta(regSwiss) # COEFICIENTES PADRONIZADOS
+
+
+### VERIFICAÇÃO DOS PRESSUPOSTOS ###
+# normalidade dos resíduos
+shapiro.test(residuals(regarrests))
+plot(regarrests, which=1, col=c("blue")) # resíduos x ajuste
+plot(regarrests, which=2, col=c("red")) # Q-Q Plot
+plot(regarrests, which=5, col=c("blue"))  # Observações Influentes
+
+
+regarrestsback <- step(lm(Assault ~ ., data = USArrests), direction = 'backward') # de trás pra frente
+summary(regarrestsback)
+regarrestsForw <- step(lm(Assault ~ ., data = USArrests), direction = 'forward') # do início pro fim
+summary(regarrestsForw)
+regarrestsbopth <- step(lm(Assault ~ ., data = USArrests), direction = 'both') # nos dois sentidos
+summary(regarrestsbopth)
+
+
+vif(regarrests)
+barplot(vif(regarrests), main = "VIF Values", horiz = FALSE, col = "steelblue", ylim = c(0,5))
+abline(h = 5, lwd = 3, lty = 2)
